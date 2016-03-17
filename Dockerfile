@@ -7,6 +7,8 @@ RUN \
   cat /etc/tor/conf-available/client/ExcludeSingleHopRelays | tee -a /etc/tor/torrc && \
   cat /etc/tor/conf-available/client/EnforceDistinctSubnets | tee -a /etc/tor/torrc && \
   cat /etc/tor/conf-available/client/SocksPort | tee -a /etc/tor/torrc && \
-  cat /etc/tor/conf-available/server/AllowSingleHopExits | tee -a /etc/tor/torrc && \
-  cat /etc/tor/conf-available/server/ORPort | tee -a /etc/tor/torrc && \
-  echo "ExitRelay 0" | tee -a /etc/tor/torrc
+  cat /etc/tor/conf-available/directory/DirPort | tee -a /etc/tor/torrc && \
+  cat /etc/tor/conf-available/relay/AllowSingleHopExits-On | tee -a /etc/tor/torrc && \
+  cat /etc/tor/conf-available/relay/ExitPolicy-RejectAll | tee -a /etc/tor/torrc && \
+  cat /etc/tor/conf-available/relay/ExitRelay-Off | tee -a /etc/tor/torrc && \
+  cat /etc/tor/conf-available/relay/ORPort | tee -a /etc/tor/torrc
