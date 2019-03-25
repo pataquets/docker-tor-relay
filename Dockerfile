@@ -1,15 +1,20 @@
 FROM pataquets/tor
 
 RUN \
-  cat /etc/tor/conf-available/common/* | tee -a /etc/tor/torrc && \
-  cat /etc/tor/conf-available/client/AllowDotExit | tee -a /etc/tor/torrc && \
-  cat /etc/tor/conf-available/client/AllowSingleHopCircuits | tee -a /etc/tor/torrc && \
-  cat /etc/tor/conf-available/client/DNSPort | tee -a /etc/tor/torrc && \
-  cat /etc/tor/conf-available/client/ExcludeSingleHopRelays | tee -a /etc/tor/torrc && \
-  cat /etc/tor/conf-available/client/EnforceDistinctSubnets | tee -a /etc/tor/torrc && \
-  cat /etc/tor/conf-available/client/SocksPort | tee -a /etc/tor/torrc && \
-  cat /etc/tor/conf-available/directory/DirPort | tee -a /etc/tor/torrc && \
-  cat /etc/tor/conf-available/relay/AllowSingleHopExits-On | tee -a /etc/tor/torrc && \
-  cat /etc/tor/conf-available/relay/ExitPolicy-RejectAll | tee -a /etc/tor/torrc && \
-  cat /etc/tor/conf-available/relay/ExitRelay-Off | tee -a /etc/tor/torrc && \
-  cat /etc/tor/conf-available/relay/ORPort | tee -a /etc/tor/torrc
+  echo "Nickname PataquetsDockerTorRelay" \
+    | tee /etc/tor/conf-available/common/Nickname \
+  && \
+  cat \
+    /etc/tor/conf-available/common/* \
+    /etc/tor/conf-available/client/AllowDotExit \
+    /etc/tor/conf-available/client/AllowSingleHopCircuits \
+    /etc/tor/conf-available/client/DNSPort \
+    /etc/tor/conf-available/client/ExcludeSingleHopRelays \
+    /etc/tor/conf-available/client/EnforceDistinctSubnets-Off \
+    /etc/tor/conf-available/client/SocksPort \
+    /etc/tor/conf-available/directory/DirPort \
+    /etc/tor/conf-available/relay/AllowSingleHopExits-On \
+    /etc/tor/conf-available/relay/ExitPolicy-RejectAll \
+    /etc/tor/conf-available/relay/ExitRelay-Off \
+    /etc/tor/conf-available/relay/ORPort \
+  | tee -a /etc/tor/torrc | nl
