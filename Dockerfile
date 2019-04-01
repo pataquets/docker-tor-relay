@@ -1,9 +1,6 @@
 FROM pataquets/tor
 
 RUN \
-  echo "Nickname PataquetsDockerTorRelay" \
-    | tee /etc/tor/conf-available/common/Nickname \
-  && \
   cat \
     /etc/tor/conf-available/common/* \
     /etc/tor/conf-available/client/DNSPort \
